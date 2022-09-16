@@ -37,6 +37,14 @@ class HeroHeaderUIView: UIView {
         return imageView
     }()
     
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.sizeToFit()
+        return label
+    }()
+    
     private func addGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -61,8 +69,14 @@ class HeroHeaderUIView: UIView {
             downloadButton.widthAnchor.constraint(equalToConstant: 120)
         ]
         
+        let titleLabelConstraints = [
+            titleLabel.bottomAnchor.constraint(equalTo: heroImageView.bottomAnchor, constant: -10),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ]
+        
         NSLayoutConstraint.activate(playButtonConstraints)
         NSLayoutConstraint.activate(downloadButtonConstraints)
+        NSLayoutConstraint.activate(titleLabelConstraints)
 
     }
     
@@ -72,13 +86,15 @@ class HeroHeaderUIView: UIView {
         addGradient()
         addSubview(playButton)
         addSubview(downloadButton)
+        addSubview(titleLabel)
         applyConstraints()
     }
 
     
-    public func configure(with model: String) {
-        guard let url = URL(string:"https://image.tmdb.org/t/p/w500/\(model)") else { return }
+    public func configure(with model: Title) {
+        guard let url = URL(string:"https://image.tmdb.org/t/p/w500/\(model.poster_path ?? "")") else { return }
         heroImageView.sd_setImage(with: url, completed: nil)
+        titleLabel.text = model.name ?? model.title ?? "Unknown Title"
     }
     
     override func layoutSubviews() {

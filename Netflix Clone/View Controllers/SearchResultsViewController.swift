@@ -69,7 +69,7 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_name ?? title.original_title else { return }
+        guard let titleName = title.name ?? title.original_title else { return }
         
         NetworkManager.shared.getMovieTrailer(with: titleName) { [weak self] result in
             switch result {

@@ -83,7 +83,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configure(with: TitleViewModel(titleName:
-                                                titles[indexPath.row].original_title ?? titles[indexPath.row].original_name ?? "Unknown Title",
+                                                titles[indexPath.row].name ?? titles[indexPath.row].original_title ?? "Unknown Title",
                                             posterPath: titles[indexPath.row].poster_path ?? ""))
         return cell
     }
@@ -93,7 +93,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let title = titles[indexPath.row]
         
-        guard let titleName = title.original_name ?? title.original_title else { return }
+        guard let titleName = title.name ?? title.original_title else { return }
         
         NetworkManager.shared.getMovieTrailer(with: titleName) { [weak self] result in
             switch result {
