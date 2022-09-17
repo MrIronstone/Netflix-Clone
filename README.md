@@ -21,6 +21,7 @@ The app has 4 main screen, same as netflix itself, Home, Upcoming, Top Search an
 • Thanks to sdwebimage, photos can be cached and provide uninterrupted slide animations.  <br /><br />
 • Uses Swift's Result type <br /><br />
 • Every view has been created programmatically <br /><br />
+• Used Youtube API v3 for videos and TMDB for title names and posters <br /><br />
 
 ### *Used UIKit Components*
 • CollectionView <br /><br />
