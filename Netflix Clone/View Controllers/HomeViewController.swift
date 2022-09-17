@@ -28,8 +28,13 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTable)
         
+        // navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
+        
+        navigationController?.navigationBar.tintColor = .white
         
         configureNavBar()
         
@@ -51,7 +56,8 @@ class HomeViewController: UIViewController {
                 let selectedRandomTitle = titles.randomElement()
                 self?.randomTrendingMovie = selectedRandomTitle
                 DispatchQueue.main.async { [weak self] in
-                    self?.headerView?.configure(with: selectedRandomTitle?.poster_path ?? "")
+                    guard let selectedRandomTitle = selectedRandomTitle else { return }
+                    self?.headerView?.configure(with: selectedRandomTitle)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -257,12 +263,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
+    /*
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
+     */
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -283,6 +291,7 @@ extension HomeViewController: CollectionViewTableViewCellDelegate {
     func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
         DispatchQueue.main.async { [weak self] in
             let vc = TitlePreviewViewController()
+            vc.navigationController?.navigationBar.tintColor = .white
             vc.configure(with: viewModel)
             self?.navigationController?.pushViewController(vc, animated: true)
         }

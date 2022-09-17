@@ -29,7 +29,7 @@ class CoreDataManager {
         let item = TitleEntity(context: context)
         
         item.original_title = model.original_title
-        item.original_name = model.original_name
+        item.name = model.name
         item.id = Int64(model.id)
         item.poster_path = model.poster_path
         item.overview = model.overview

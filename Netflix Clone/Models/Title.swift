@@ -18,7 +18,8 @@ struct Title: Codable {
     let media_type: String?
     let original_language: String?
     let original_title: String?
-    let original_name: String?
+    let name: String?
+    let title: String?
     let popularity: Double?
     let poster_path: String?
     let overview: String?

@@ -93,7 +93,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         
         
         let title = titles[indexPath.row]
-        guard let titleName = title.original_title ?? title.original_name else { return }
+        guard let titleName = title.name ?? title.original_title else { return }
         
         NetworkManager.shared.getMovieTrailer(with: titleName + " trailer") { [weak self] result in
             switch result {
