@@ -20,8 +20,8 @@ The app has 4 main screen, same as netflix itself, Home, Upcoming, Top Search an
 ### *Code Highlights*
 • Thanks to sdwebimage, photos can be cached and provide uninterrupted slide animations.  <br /><br />
 • Uses Swift's Result type <br /><br />
-• Every view has been created programmatically <br /><br />
-• Used Youtube API v3 for videos and TMDB for title names and posters <br /><br />
+• Every view has been created ***programmatically*** <br /><br />
+• Each page loads 10 countries, thanks to the "limit 10" parameter in the network layer. When it comes to the bottom of the page, it automatically pulls the other page from the internet and merges it with the previous one. This way, both the pages contain little data and the next page can be loaded quickly and I get a fluent experience on UI. <br /><br />
 
 ### *Used UIKit Components*
 • CollectionView <br /><br />
